@@ -1,22 +1,33 @@
 import { DeckBuilder } from "./deckBuilder/deckBuilder.js";
-import * as ItemBuilder from "./items/ItemBuilders.js";
+import * as ItemBuilders from "./items/ItemBuilders.js";
 import * as GlobalThemes  from "./theme/globalThemes.js";
 import * as GlobalBackgrounds  from "./theme/globalBackgrounds.js";
 
-const theme = GlobalThemes.pastel;
-const background = GlobalBackgrounds.bricksBg(theme);
-
+// Create deck
 const deck = new DeckBuilder();
-deck.setGlobalBackground(background);
 
-// Slide using global background
+// Set global background (light yellow)
+deck.setGlobalBackground({
+  backgroundColor: "#fffbe6",
+  backgroundImage: null,
+  backgroundImageOpacity: 1,
+  pattern: null
+});
+
+// Add slide from 0s to 6s
 const slide = deck.addSlide(6);
-slide.addItem(ItemBuilder.text("Welcome to Taleem"));
-slide.addItem(ItemBuilder.image("book"));
 
-// Slide with background override
-const second = deck.addSlide(12);
-second.addItem(ItemBuilder.rect({ color: 0xffaa00 }));
-second.overrideBg = { pattern: { type: "dots", props: { color: "#fff", opacity: 0.1, spacing: 20, radius: 3 } } };
+// Add a text item with position
+slide.addItem(
+  ItemBuilders.text("Hello Taleem!", {
+    x: 100,
+    y: 150,
+    fontSize: 42,
+    color: 0x333333,
+    showAt: 0
+  })
+);
 
-console.log(JSON.stringify(deck.build(), null, 2));
+// Export deck
+const json = deck.build();
+console.log(JSON.stringify(json, null, 2));
