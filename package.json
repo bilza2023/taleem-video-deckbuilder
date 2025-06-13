@@ -1,6 +1,6 @@
 {
   "name": "taleem-video-deckbuilder",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Composable, themeable slide builder for Taleem.Help presentations",
   "type": "module",
   "exports": {
